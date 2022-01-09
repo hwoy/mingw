@@ -6,7 +6,7 @@ You'll need to run them in MSYS2, which you can set up without an installer:
 
 * Go to: https://github.com/msys2/msys2-installer/releases/latest
 * Download: `msys2-base-x86_64-<RELEASE_DATE>.tar.xz`
-* Extract it to: `C:\Temp\msys64` (any where you want)
+* Extract it to: `C:\Temp\` (any where you want)
 * Run: `msys2_shell.cmd`
 * Restart MSYS2 when you're instructed to.
 * In MSYS2, repeatedly run `pacman -Syuu` until you see:
@@ -47,8 +47,8 @@ The build scripts assume that:
   + `0_append_distro_path{_32}.sh`, where it says `export X_BUILDDIR=${X_BASEDIR}/Builds`.
 * Run `INITPROJECT.sh` create project directroy.
 * Run `DOWNLOADALLPKG.sh` download source code packages.
-* Enter `C:\Temp\MinGW-Base\Sources` and run `32.BUILDALL.sh` on MinGW32 Msys
-* Enter `C:\Temp\MinGW-Base\Sources` and run `64.BUILDALL.sh` on MinGW64 Msys
+* Enter `C:\Temp\MinGW-Base\Sources`, In MinGW32 run `32.BUILDALL.sh`
+* Enter `C:\Temp\MinGW-Base\Sources`, In MinGW64 run `64.BUILDALL.sh`
 
 Watthanachai Dueanklang - bosskillerz@gmail.com
 
