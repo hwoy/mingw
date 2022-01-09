@@ -124,7 +124,7 @@ build()
 	  --enable-libgomp \
 	  --with-arch=${_arch} \
       --with-tune=generic \
-	  --with-pkgversion="${PROJECTNAME} REV${REV}, Built by ${AUTHOR}" \
+	  --with-pkgversion="${PROJECTNAME} ${REV}, Built by ${AUTHOR}" \
 	  --with-boot-ldflags="${LDFLAGS} -static-libstdc++ -static-libgcc" \
 		LDFLAGS_FOR_TARGET="${_LDFLAGS_FOR_TARGET}" \
       --enable-linker-plugin-flags='LDFLAGS=-static-libstdc++\ -static-libgcc\ '"${_LDFLAGS_FOR_TARGET// /\\ }"'\ -Wl,--stack,12582912' \
