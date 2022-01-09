@@ -1,10 +1,10 @@
-Distro name: <cumMinGW>
-Created by: <Watthanachai Dueanklang>
-Reversion: <1>
-Compilers: <c,lto,c++>
-Thread: <posix>
-Exception: <SEH for 64> <Draft-2 for 32>
-Libc: <msvcrt>
+Distro name: cumMinGW
+Created by: Watthanachai Dueanklang
+Reversion: 1
+Compilers: c,lto,c++
+Thread: posix
+Exception: SEH for 64 and Draft-2 for 32
+Libc: msvcrt
 
 
 ====================== Packages ======================
