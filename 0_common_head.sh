@@ -1,5 +1,5 @@
 PROJ=cumMinGW
-REV=1
+REV=v1.0.0
 AUTHOR="Watthanachai Dueanklang"
 
 #_languages="c,lto,c++,fortran"
