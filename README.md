@@ -1,4 +1,4 @@
-# MinGW Distro:
+# MinGW Distro:https://github.com/hwoy/mingw.git
 
 Here are the build scripts for my MinGW distro.
 
