@@ -38,7 +38,7 @@ build()
 	mkdir build dest
 	cd build
 
-	../src/mingw-w64-headers/configure --build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
+	../src/mingw-w64-headers/configure --build=${X_BUILD} --host=${X_HOST} \
 	--prefix=${X_BUILDDIR}/dest/${X_HOST}  \
 	--enable-wildcard \
     --with-default-msvcrt=${_default_msvcrt} \

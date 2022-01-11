@@ -15,12 +15,7 @@ decompress()
 
 prepare()
 {
-	cd patch
-	apply_patch_p1 Define-__-de-register_frame_info-in-fake-libgcc_s.patch
-  cd ..
-  
-    cd ${X_BUILDDIR}/mingw-w64-v9.0.0/mingw-w64-libraries/winpthreads
-  autoreconf -vfi
+:;
 }
 
 build()
@@ -34,13 +29,10 @@ build()
 	mkdir build dest
 	cd build
 
-	../src/mingw-w64-libraries/winpthreads/configure \
-	--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
-	--prefix=${X_BUILDDIR}/dest/${X_HOST} \
-    --enable-static \
-    --enable-shared \
-	${MINGW_PARAM} \
-	"CPPFLAGS=-D__USE_MINGW_ANSI_STDIO=1"
+	../src/mingw-w64-libraries/winstorecompat/configure \
+	--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} --target=${X_HOST} \
+	--prefix=${X_BUILDDIR}/dest \
+	${MINGW_PARAM}
 	
 	# https://github.com/msys2/MINGW-packages/issues/7043
 
@@ -54,15 +46,15 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-winpthreads-${SVERSION}-${X_HOST}
-	cd ${SNAME}-winpthreads-${SVERSION}-${X_HOST}
+	mv dest ${SNAME}-winstorecompat-${SVERSION}-${X_HOST}
+	cd ${SNAME}-winstorecompat-${SVERSION}-${X_HOST}
 	mv ${X_HOST}/bin ./
 	
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-winstorecompat-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
 
 }
 

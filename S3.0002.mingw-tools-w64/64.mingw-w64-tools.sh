@@ -32,21 +32,24 @@ build()
 	MINGW_PARAM="--disable-lib32 --enable-lib64"
 	mv ${SNAME}-${SVERSION} src
 	mkdir build dest
-	cd build
 
-	../src/mingw-w64-libraries/winpthreads/configure \
+  _tools="gendef genlib genidl genpeimg widl" # genstubdll
+  local cur=
+  for cur in ${_tools}; do
+  rm -rf build
+  mkdir build
+  cd build
+    ../src/mingw-w64-tools/${cur}/configure \
 	--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
-	--prefix=${X_BUILDDIR}/dest/${X_HOST} \
-    --enable-static \
-    --enable-shared \
-	${MINGW_PARAM} \
-	"CPPFLAGS=-D__USE_MINGW_ANSI_STDIO=1"
-	
+	--prefix=${X_BUILDDIR}/dest \
+	${MINGW_PARAM}
+    make $X_MAKE_JOBS
+	make install
+    cd ..
+  done
 	# https://github.com/msys2/MINGW-packages/issues/7043
 
 	# The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
-	make $X_MAKE_JOBS all
-	make  install
 
 	#make $X_MAKE_JOBS all "CFLAGS=-s -O2"
 	#make  install
@@ -54,15 +57,15 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-winpthreads-${SVERSION}-${X_HOST}
-	cd ${SNAME}-winpthreads-${SVERSION}-${X_HOST}
+	mv dest ${SNAME}-tools-${SVERSION}-${X_HOST}
+	cd ${SNAME}-tools-${SVERSION}-${X_HOST}
 	mv ${X_HOST}/bin ./
 	
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
 
 }
 
