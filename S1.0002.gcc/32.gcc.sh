@@ -156,8 +156,8 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-${SVERSION}-${X_HOST}
-	cd ${SNAME}-${SVERSION}-${X_HOST}/${MINGW_PREFIX}
+	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}/${MINGW_PREFIX}
 	
 	#rm -rf usr
 	#cp libgcc_s

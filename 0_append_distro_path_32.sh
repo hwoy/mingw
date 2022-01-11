@@ -23,9 +23,6 @@ export CXXFLAGS=" "
 
 source ../0_common.sh
 
-STAGE1=${X_TARGET}-STAGE1-${X_THREAD}-${_default_msvcrt}
-STAGE23=${X_TARGET}-STAGE23-${X_THREAD}-${_default_msvcrt}
-
 # Print commands.
 if [ "${PS1:-}" == "" ]; then set -x; fi
 

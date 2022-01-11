@@ -52,8 +52,8 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-tools-${SVERSION}-${X_HOST}
-	cd ${SNAME}-tools-${SVERSION}-${X_HOST}
+	mv dest ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	cd ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 	
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}

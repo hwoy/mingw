@@ -35,8 +35,8 @@ build()
 	ninja install
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-${SVERSION}
-	cd ${SNAME}-${SVERSION}
+	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 	#rm -rf bin/zstdgrep bin/zstdless lib/cmake lib/pkgconfig share
 	#for i in bin/unzstd bin/zstdcat bin/zstdmt; do mv $i $i.exe; done
 

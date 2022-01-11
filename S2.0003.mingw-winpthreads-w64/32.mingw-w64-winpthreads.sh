@@ -54,8 +54,8 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-winpthreads-${SVERSION}-${X_HOST}
-	cd ${SNAME}-winpthreads-${SVERSION}-${X_HOST}
+	mv dest ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	cd ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 	mv ${X_HOST}/bin ./
 	
 	rm -rf ../${PROJECTNAME}

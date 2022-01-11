@@ -32,8 +32,8 @@ build()
 	cd ${X_BUILDDIR}
 	rm -rf src
 
-	mv dest ${SNAME}-${SVERSION}
-	cd ${SNAME}-${SVERSION}
+	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}

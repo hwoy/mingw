@@ -17,15 +17,11 @@ export NEW_DISTRO_ROOT=/c/${PROJECTNAME}
 export X_DISTRO_ROOT=/c/Temp/msys64/mingw64
 #export X_DISTRO_ROOT=${NEW_DISTRO_ROOT}
 
-
-source ../0_common.sh
-
-STAGE1=${X_SRCDIR}/${X_TARGET}-STAGE1-${X_THREAD}-${_default_msvcrt}
-STAGE23=${X_SRCDIR}/${X_TARGET}-STAGE23-${X_THREAD}-${_default_msvcrt}
-
 export LDFLAGS=" "
 export CFLAGS=" "
 export CXXFLAGS=" "
+
+source ../0_common.sh
 
 
 # Print commands.

@@ -8,7 +8,7 @@ cat 0_append_distro_path.sh | grep "#export X_DISTRO_ROOT=${NEW_DISTRO_ROOT}" &&
 
 cd utils
 source ../0_append_distro_path.sh
-source ../BULD_COMMON.sh
+source ../BUILD_COMMON.sh
 cd ..
 
 rm -rf ${STAGE23}
