@@ -67,7 +67,7 @@ build()
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-headers-${SVERSION}-${X_HOST}.7z
+	zip7 ${SNAME}-headers-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
 
 }
 

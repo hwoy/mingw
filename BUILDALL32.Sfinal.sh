@@ -12,6 +12,6 @@ cd ..
 
 sh utils/INSTALL.sh ${STAGE23} ${STAGE23}/output
 
-sh utils/PACKDIR.sh ${STAGE23}/output ${X_SRCDIR}/${PROJ}-${X_TARGET}
+sh utils/PACKDIR.sh ${STAGE23}/output ${X_SRCDIR}/${PROJ}-${X_TARGET}-${X_THREAD}-${_default_msvcrt}
 
 rm -rf ${STAGE23}/output

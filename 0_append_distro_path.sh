@@ -20,8 +20,8 @@ export X_DISTRO_ROOT=/c/Temp/msys64/mingw64
 
 source ../0_common.sh
 
-STAGE1=${X_SRCDIR}/${X_TARGET}-STAGE1
-STAGE23=${X_SRCDIR}/${X_TARGET}-STAGE23
+STAGE1=${X_SRCDIR}/${X_TARGET}-STAGE1-${X_THREAD}-${_default_msvcrt}
+STAGE23=${X_SRCDIR}/${X_TARGET}-STAGE23-${X_THREAD}-${_default_msvcrt}
 
 export LDFLAGS=" "
 export CFLAGS=" "

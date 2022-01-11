@@ -171,7 +171,7 @@ build()
 	cd ../
 
 	mv ${MINGW_PREFIX:1} ${PROJECTNAME}
-	zip7 ${SNAME}-${SVERSION}-${X_HOST}.7z
+	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
 
 }
 
