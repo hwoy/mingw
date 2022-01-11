@@ -29,8 +29,8 @@ prepare()
   
   # patches for reproducibility from Debian:
   # https://salsa.debian.org/mingw-w64-team/binutils-mingw-w64/-/tree/master/debian/patches
-  #apply_patch_p2 "reproducible-import-libraries.patch"
-  #apply_patch_p2 "specify-timestamp.patch"
+  apply_patch_p2 "reproducible-import-libraries.patch"
+  apply_patch_p2 "specify-timestamp.patch"
   
    # https://sourceware.org/bugzilla/show_bug.cgi?id=28138
   apply_patch_p1 2004-bfd-Close-the-file-descriptor-if-there-is-no-archive.patch
