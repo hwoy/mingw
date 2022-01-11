@@ -15,10 +15,7 @@ decompress()
 
 prepare()
 {
-	cd patch
-	apply_patch_p1 Define-__-de-register_frame_info-in-fake-libgcc_s.patch
-  cd ..
-  
+:;
 }
 
 build()
@@ -57,7 +54,6 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-tools-${SVERSION}-${X_HOST}
 	cd ${SNAME}-tools-${SVERSION}-${X_HOST}
-	mv ${X_HOST}/bin ./
 	
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}

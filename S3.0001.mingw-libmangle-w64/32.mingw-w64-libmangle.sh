@@ -15,12 +15,7 @@ decompress()
 
 prepare()
 {
-	cd patch
-	apply_patch_p1 Define-__-de-register_frame_info-in-fake-libgcc_s.patch
-  cd ..
-  
-    cd ${X_BUILDDIR}/mingw-w64-v9.0.0/mingw-w64-libraries/winpthreads
-  autoreconf -vfi
+:;
 }
 
 build()
@@ -53,7 +48,6 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-libmangle-${SVERSION}-${X_HOST}
 	cd ${SNAME}-libmangle-${SVERSION}-${X_HOST}
-	mv ${X_HOST}/bin ./
 	
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}

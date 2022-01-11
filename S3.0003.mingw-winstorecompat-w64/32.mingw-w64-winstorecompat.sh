@@ -48,7 +48,6 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-winstorecompat-${SVERSION}-${X_HOST}
 	cd ${SNAME}-winstorecompat-${SVERSION}-${X_HOST}
-	mv ${X_HOST}/bin ./
 	
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
