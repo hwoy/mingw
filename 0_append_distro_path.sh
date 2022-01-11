@@ -7,7 +7,7 @@ set -u
 if [ "${PS1:-}" == "" ]; then set -e; fi
 
 source ../0_common_head.sh
-PROJECTNAME=${PROJ}64
+PROJECTNAME=${PROJ}64${_default_msvcrt}
 
 export X_BUILD=x86_64-w64-mingw32
 export X_HOST=${X_BUILD}
