@@ -28,6 +28,7 @@ You'll need to run them in MSYS2, which you can set up without an installer:
 * In MSYS2, run: `pacman -Syy mingw-w64-i686-autotools mingw-w64-x86_64-autotools`
 * In MSYS2, run: `pacman -Syy autoconf autogen`
 * In MSYS2, run: `pacman -Syy base-devel compression`
+* In MSYS2, run: `pacman -Syy git` (Optional)
 * In MSYS2, repeatedly run `pacman -Syuu` again. Answer `Y` if you're asked:
   ```
   :: Replace pkg-config with msys/pkgconf? [Y/n]
