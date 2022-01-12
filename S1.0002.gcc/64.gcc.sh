@@ -60,9 +60,9 @@ prepare()
 build()
 {
 	#No use libiconv
-	export am_cv_func_iconv=no
-	#export lt_cv_deplibs_check_method='pass_all'
-	export gcc_cv_libc_provides_ssp=yes
+	#export am_cv_func_iconv=no
+	export lt_cv_deplibs_check_method='pass_all'
+	#export gcc_cv_libc_provides_ssp=yes
 	
 	cd ${X_BUILDDIR}
 
@@ -92,7 +92,7 @@ build()
 	mkdir build
 	cd build
 	
-	../src/configure --enable-languages=c,lto,c++ \
+	../src/configure --enable-languages=${_languages} \
 	--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
 	--prefix=${MINGW_PREFIX}  \
 	--with-native-system-header-dir=${MINGW_PREFIX}/${MINGW_CHOST}/include \
@@ -111,10 +111,8 @@ build()
       --enable-cloog-backend=isl \
       --enable-version-specific-runtime-libs \
       --disable-isl-version-check \
-	  --without-libiconv-prefix --disable-libiconv \
+	  --with-libiconv \
 	  --without-libintl-prefix --disable-libintl \
-	  --disable-libssp \
-	  --disable-libitm \
 	  --enable-linker-build-id \
 	  --enable-libquadmath \
       --enable-libquadmath-support \

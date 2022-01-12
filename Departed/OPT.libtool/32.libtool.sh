@@ -27,7 +27,7 @@ build()
 	--prefix=${X_BUILDDIR}/dest \
 	--with-sysroot=${X_BUILDDIR}/dest
 	
-	make "CFLAGS=-s -O2"
+	make
 	make install
 
 	cd ${X_BUILDDIR}

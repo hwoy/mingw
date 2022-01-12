@@ -25,9 +25,11 @@ buildpkg S2.0004.zstd 32.zstd.sh ${STAGE23}
 
 buildpkg S2.0005.zlib 32.zlib.sh ${STAGE23}
 
-buildpkg S2.0006.gcc 32.gcc.sh ${STAGE23}
+buildpkg S2.0006.libiconv 32.libiconv.sh ${STAGE23}
 
-buildpkg S2.0007.binutils 32.binutils.sh ${STAGE23}
+buildpkg S2.0007.gcc 32.gcc.sh ${STAGE23}
+
+buildpkg S2.0008.binutils 32.binutils.sh ${STAGE23}
 
 buildpkg S3.0001.mingw-libmangle-w64 32.mingw-w64-libmangle.sh ${STAGE23}
 

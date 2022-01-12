@@ -47,19 +47,21 @@ build()
 	
 	BINUTILS_PARAM=" "
 
-	../src/configure --disable-nls \
-	--disable-shared \
+	../src/configure \
 	--build=${X_BUILD} \
 	--host=${X_HOST} \
 	--target=${X_TARGET} \
-	--disable-multilib \
-	--enable-lto \
 	--prefix=${X_BUILDDIR}/dest \
     --with-sysroot=${X_BUILDDIR}/dest \
-	--disable-nls \
+	--disable-multilib \
+	--disable-shared \
+	--enable-lto \
+	--disable-werror \
+	--enable-nls \
     --disable-rpath \
 	--enable-plugins \
 	--enable-deterministic-archives \
+	--enable-install-libiberty \
 	${BINUTILS_PARAM}
 
 	make $X_MAKE_JOBS all
