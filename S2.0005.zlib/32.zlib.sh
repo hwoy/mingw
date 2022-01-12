@@ -7,7 +7,7 @@ SVERSION=1.2.11
 
 decompress()
 {
-	untar_file v${SVERSION}.tar.gz
+	untar_file ${SNAME}-${SVERSION}.tar.xz
 }
 
 prepare()
