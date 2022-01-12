@@ -2,15 +2,22 @@
 
 DIR=$(dirname $0)
 
-cd ${DIR}
+build_msvcrt()
+{
+	cd ${DIR}
 
-cat 0_common_head.sh | grep "#_default_msvcrt=ucrt" || sed 's/_default_msvcrt=ucrt/#_default_msvcrt=ucrt/1' 0_common_head.sh -i
+	cat 0_common_head.sh | grep "#_default_msvcrt=ucrt" || sed 's/_default_msvcrt=ucrt/#_default_msvcrt=ucrt/1' 0_common_head.sh -i
 
-sh BUILDALL32.S1.sh && sh BUILDALL32.S23.sh && sh BUILDALL32.Sfinal.sh && echo "===================== Success ====================="
+	sh BUILDALL32.S1.sh && sh BUILDALL32.S23.sh && sh BUILDALL32.Sfinal.sh && echo "===================== Success ====================="
+}
 
-#cd ${DIR}
+build_ucrt()
+{
+	cd ${DIR}
 
-#cat 0_common_head.sh | grep "#_default_msvcrt=ucrt" && sed 's/#_default_msvcrt=ucrt/_default_msvcrt=ucrt/1' 0_common_head.sh -i
+	cat 0_common_head.sh | grep "#_default_msvcrt=ucrt" && sed 's/#_default_msvcrt=ucrt/_default_msvcrt=ucrt/1' 0_common_head.sh -i
 
-#sh BUILDALL32.S1.sh && sh BUILDALL32.S23.sh && sh BUILDALL32.Sfinal.sh && echo "===================== Success ====================="
+	sh BUILDALL32.S1.sh && sh BUILDALL32.S23.sh && sh BUILDALL32.Sfinal.sh && echo "===================== Success ====================="
+}
 
+build_msvcrt
