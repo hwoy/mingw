@@ -1,5 +1,3 @@
-#!/bin/sh
-
 finish()
 {
 	sh utils/INSTALL.sh ${X_BUILDDIR} $(dirname ${NEW_DISTRO_ROOT})

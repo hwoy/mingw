@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Reject expansion of unset variables.
 set -u
 
