@@ -13,11 +13,11 @@ decompress()
 prepare()
 {
 	cd patch
-	
+
 	apply_patch_p1 01-zlib-1.2.11-1-buildsys.mingw.patch
 	apply_patch_p2 03-dont-put-sodir-into-L.mingw.patch
 	apply_patch_p1 04-fix-largefile-support.patch
-	
+
 	cd ..
 }
 
@@ -29,10 +29,10 @@ build()
 	cd build
 
 	cmake \
-	"-DCMAKE_BUILD_TYPE=Release" \
-	"-DCMAKE_C_FLAGS=-s -O2 -DTOO_FAR=32767" \
-	"-DCMAKE_INSTALL_PREFIX=${X_BUILDDIR}/dest" \
-	-G "Ninja" ${X_BUILDDIR}/src
+		"-DCMAKE_BUILD_TYPE=Release" \
+		"-DCMAKE_C_FLAGS=-s -O2 -DTOO_FAR=32767" \
+		"-DCMAKE_INSTALL_PREFIX=${X_BUILDDIR}/dest" \
+		-G "Ninja" ${X_BUILDDIR}/src
 
 	ninja ${X_B2_JOBS}
 	ninja install

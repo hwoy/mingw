@@ -21,49 +21,49 @@ STAGE1=${X_SRCDIR}/${X_TARGET}-${X_THREAD}-${_default_msvcrt}-STAGE1
 STAGE23=${X_SRCDIR}/${X_TARGET}-${X_THREAD}-${_default_msvcrt}-STAGE23
 
 apply_patch_p2() {
-  for _patch in "$@"
-  do
-    patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -p2 < "${_patch}"
-  done
+	for _patch in "$@"
+	do
+		patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -p2 < "${_patch}"
+	done
 }
 
 apply_patch_p1() {
-  for _patch in "$@"
-  do
-    patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -p1 < "${_patch}"
-  done
+	for _patch in "$@"
+	do
+		patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -p1 < "${_patch}"
+	done
 }
 
 apply_patch_p0() {
-  for _patch in "$@"
-  do
-    patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -p0 < "${_patch}"
-  done
+	for _patch in "$@"
+	do
+		patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -p0 < "${_patch}"
+	done
 }
 
 apply_reverse_patch_p2() {
-  for _patch in "$@"
-  do
-    patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -R -p2 < "${_patch}"
-  done
+	for _patch in "$@"
+	do
+		patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -R -p2 < "${_patch}"
+	done
 }
 
 apply_reverse_patch_p1() {
-  for _patch in "$@"
-  do
-    patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -R -p1 < "${_patch}"
-  done
+	for _patch in "$@"
+	do
+		patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -R -p1 < "${_patch}"
+	done
 }
 
 apply_reverse_patch_p0() {
-  for _patch in "$@"
-  do
-    patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -R -p0 < "${_patch}"
-  done
+	for _patch in "$@"
+	do
+		patch -d ${X_BUILDDIR}/${SNAME}-${SVERSION} -R -p0 < "${_patch}"
+	done
 }
 
 function untar_file {
-    tar  --directory=${X_BUILDDIR} -xvf $*
+	tar  --directory=${X_BUILDDIR} -xvf $*
 }
 
 function zip7
@@ -72,10 +72,10 @@ function zip7
 }
 
 del_file_exists() {
-  for _fname in "$@"
-  do
-    if [ -f ${_fname} ]; then
-      rm -rf ${_fname}
-    fi
-  done
+	for _fname in "$@"
+	do
+		if [ -f ${_fname} ]; then
+			rm -rf ${_fname}
+		fi
+	done
 }

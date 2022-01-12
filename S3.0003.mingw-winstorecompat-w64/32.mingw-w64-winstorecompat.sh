@@ -15,12 +15,12 @@ decompress()
 
 prepare()
 {
-:;
+	:;
 }
 
 build()
 {
-	
+
 	cd ${X_BUILDDIR}
 
 	# Build mingw-w64 and winpthreads.
@@ -30,10 +30,10 @@ build()
 	cd build
 
 	../src/mingw-w64-libraries/winstorecompat/configure \
-	--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} --target=${X_HOST} \
-	--prefix=${X_BUILDDIR}/dest \
-	${MINGW_PARAM}
-	
+		--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} --target=${X_HOST} \
+		--prefix=${X_BUILDDIR}/dest \
+		${MINGW_PARAM}
+
 	# https://github.com/msys2/MINGW-packages/issues/7043
 
 	# The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
@@ -48,7 +48,7 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-winstorecompat-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 	cd ${SNAME}-winstorecompat-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	
+
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}

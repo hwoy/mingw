@@ -17,18 +17,18 @@ prepare()
 {
 	cd patch
 	apply_patch_p1 \
-	0001-Allow-to-use-bessel-and-complex-functions-without-un.patch \
-	0002-DirectX-9-fixes-for-VLC.patch
-	
-  cd ..
-  
-  cd ${X_BUILDDIR}/${SNAME}-${SVERSION}/mingw-w64-headers
-  touch include/windows.*.h include/wincrypt.h include/prsht.h
+		0001-Allow-to-use-bessel-and-complex-functions-without-un.patch \
+		0002-DirectX-9-fixes-for-VLC.patch
+
+	cd ..
+
+	cd ${X_BUILDDIR}/${SNAME}-${SVERSION}/mingw-w64-headers
+	touch include/windows.*.h include/wincrypt.h include/prsht.h
 }
 
 build()
 {
-	
+
 	cd ${X_BUILDDIR}
 
 	# Build mingw-w64 and winpthreads.
@@ -39,16 +39,16 @@ build()
 	cd build
 
 	../src/mingw-w64-headers/configure --build=${X_BUILD} --host=${X_HOST} \
-	--prefix=${X_BUILDDIR}/dest/${X_HOST}  \
-	--enable-wildcard \
-    --with-default-msvcrt=${_default_msvcrt} \
-	--enable-shared --enable-static --with-tools=all \
-	--enable-sdk=all \
-	--disable-dependency-tracking \
-	--enable-idl \
-    --without-widl \
-	--with-default-win32-winnt=${_default_win32_winnt} \
-	${MINGW_PARAM}
+		--prefix=${X_BUILDDIR}/dest/${X_HOST}  \
+		--enable-wildcard \
+		--with-default-msvcrt=${_default_msvcrt} \
+		--enable-shared --enable-static --with-tools=all \
+		--enable-sdk=all \
+		--disable-dependency-tracking \
+		--enable-idl \
+		--without-widl \
+		--with-default-win32-winnt=${_default_win32_winnt} \
+		${MINGW_PARAM}
 
 	# The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
 	make $X_MAKE_JOBS all
@@ -62,7 +62,7 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-headers-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 	cd ${SNAME}-headers-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	
+
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}

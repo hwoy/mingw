@@ -12,11 +12,11 @@ decompress()
 prepare()
 {
 	cd patch
-	
+
 	apply_patch_p1 0001-compile-relocatable-in-gnulib.mingw.patch
 	apply_patch_p1 0002-fix-cr-for-awk-in-configure.all.patch
 	apply_patch_p1 fix-pointer-buf.patch
-	
+
 	cd ..
 }
 
@@ -26,20 +26,20 @@ build()
 	mv ${SNAME}-${SVERSION} src
 	mkdir build dest
 	cd build
-	
+
 	../src/configure \
-	--build=${X_BUILD} \
-	--host=${X_HOST} \
-	--target==${X_HOST} \
-	--prefix=${X_BUILDDIR}/dest \
-    --enable-static \
-    --enable-shared \
-    --enable-extra-encodings \
-    --enable-relocatable \
-    --disable-rpath \
-    --enable-silent-rules \
-    --enable-nls
-	
+		--build=${X_BUILD} \
+		--host=${X_HOST} \
+		--target==${X_HOST} \
+		--prefix=${X_BUILDDIR}/dest \
+		--enable-static \
+		--enable-shared \
+		--enable-extra-encodings \
+		--enable-relocatable \
+		--disable-rpath \
+		--enable-silent-rules \
+		--enable-nls
+
 	make $X_MAKE_JOBS all
 	make install
 
@@ -47,7 +47,7 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	
+
 	#remove binary
 	rm -rf bin/*.exe
 

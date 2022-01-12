@@ -15,12 +15,12 @@ decompress()
 
 prepare()
 {
-:;
+	:;
 }
 
 build()
 {
-	
+
 	cd ${X_BUILDDIR}
 
 	# Build mingw-w64 and winpthreads.
@@ -28,21 +28,21 @@ build()
 	mv ${SNAME}-${SVERSION} src
 	mkdir build dest
 
-  _tools="gendef genlib genidl genpeimg widl" # genstubdll
-  local cur=
-  for cur in ${_tools}; do
-  rm -rf build
-  mkdir build
-  cd build
-    ../src/mingw-w64-tools/${cur}/configure \
-	--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
-	--prefix=${X_BUILDDIR}/dest \
-	${MINGW_PARAM}
-    make $X_MAKE_JOBS
-	make install
-    cd ..
-  done
-	# https://github.com/msys2/MINGW-packages/issues/7043
+	_tools="gendef genlib genidl genpeimg widl" # genstubdll
+	local cur=
+	for cur in ${_tools}; do
+		rm -rf build
+		mkdir build
+		cd build
+		../src/mingw-w64-tools/${cur}/configure \
+			--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
+			--prefix=${X_BUILDDIR}/dest \
+			${MINGW_PARAM}
+					make $X_MAKE_JOBS
+					make install
+					cd ..
+				done
+				# https://github.com/msys2/MINGW-packages/issues/7043
 
 	# The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
 
@@ -54,7 +54,7 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
 	cd ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	
+
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}

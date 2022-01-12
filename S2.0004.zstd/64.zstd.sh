@@ -25,11 +25,11 @@ build()
 	cd build
 
 	cmake \
-	"-DCMAKE_BUILD_TYPE=Release" \
-	"-DCMAKE_C_FLAGS=-s -O2" \
-	"-DCMAKE_INSTALL_PREFIX=${X_BUILDDIR}/dest" \
-	"-DZSTD_BUILD_SHARED=ON" \
-	-G "Ninja" ${X_BUILDDIR}/src/build/cmake
+		"-DCMAKE_BUILD_TYPE=Release" \
+		"-DCMAKE_C_FLAGS=-s -O2" \
+		"-DCMAKE_INSTALL_PREFIX=${X_BUILDDIR}/dest" \
+		"-DZSTD_BUILD_SHARED=ON" \
+		-G "Ninja" ${X_BUILDDIR}/src/build/cmake
 
 	ninja ${X_B2_JOBS}
 	ninja install
