@@ -94,8 +94,6 @@ build()
 	../src/configure --enable-languages=${_languages} \
 		--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
 		--prefix=${MINGW_PREFIX}  \
-		--with-native-system-header-dir=${MINGW_PREFIX}/${MINGW_CHOST}/include \
-		--libexecdir=${MINGW_PREFIX}/lib \
 		--disable-nls  --disable-win32-registry \
 		--enable-threads=${X_THREAD} --disable-bootstrap \
 		--enable-shared --enable-static --enable-lto --disable-multilib \
@@ -159,8 +157,8 @@ build()
 
 	#rm -rf usr
 	#cp libgcc_s
-	mkdir -p ${X_HOST}/lib
-	cp $(find . -name "libgcc_s.a")  ${X_HOST}/lib
+	mkdir -p ${X_TARGET}/lib
+	cp $(find . -name "libgcc_s.a")  ${X_TARGET}/lib
 
 	find -name "*.la" -type f -print -exec rm {} ";"
 	find -name "*.exe" -type f -print -exec strip -s {} ";"

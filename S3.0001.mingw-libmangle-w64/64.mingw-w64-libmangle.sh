@@ -32,7 +32,7 @@ build()
 	cd build
 
 	../src/mingw-w64-libraries/libmangle/configure \
-		--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
+		--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
 		--prefix=${X_BUILDDIR}/dest \
 		${MINGW_PARAM}
 

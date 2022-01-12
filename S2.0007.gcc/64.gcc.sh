@@ -159,8 +159,8 @@ build()
 
 	#rm -rf usr
 	#cp libgcc_s
-	mkdir -p ${X_HOST}/lib
-	cp $(find . -name "libgcc_s.a")  ${X_HOST}/lib
+	mkdir -p ${X_TARGET}/lib
+	cp $(find . -name "libgcc_s.a")  ${X_TARGET}/lib
 
 	find -name "*.la" -type f -print -exec rm {} ";"
 	find -name "*.exe" -type f -print -exec strip -s {} ";"

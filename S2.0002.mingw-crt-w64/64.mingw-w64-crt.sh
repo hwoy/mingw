@@ -34,10 +34,10 @@ build()
 	mkdir build dest
 	cd build
 
-	../src/mingw-w64-crt/configure --build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
-		--prefix=${X_BUILDDIR}/dest/${X_HOST}  \
+	../src/mingw-w64-crt/configure --build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
+		--prefix=${X_BUILDDIR}/dest/${X_TARGET}  \
 		--enable-wildcard \
-		--with-sysroot=${X_BUILDDIR}/dest/${X_HOST} \
+		--with-sysroot=${X_BUILDDIR}/dest/${X_TARGET} \
 		--with-default-msvcrt=${_default_msvcrt} \
 		--enable-shared --enable-static --with-tools=all \
 		--enable-sdk=all \

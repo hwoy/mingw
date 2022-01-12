@@ -30,7 +30,7 @@ build()
 	../src/configure \
 		--build=${X_BUILD} \
 		--host=${X_HOST} \
-		--target==${X_HOST} \
+		--target==${X_TARGET} \
 		--prefix=${X_BUILDDIR}/dest \
 		--enable-static \
 		--enable-shared \

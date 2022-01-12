@@ -35,8 +35,8 @@ build()
 	cd build
 
 	../src/mingw-w64-libraries/winpthreads/configure \
-		--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
-		--prefix=${X_BUILDDIR}/dest/${X_HOST} \
+		--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
+		--prefix=${X_BUILDDIR}/dest/${X_TARGET} \
 		--enable-static \
 		--enable-shared \
 		${MINGW_PARAM} \

@@ -39,7 +39,7 @@ build()
 	cd build
 
 	../src/mingw-w64-headers/configure --build=${X_BUILD} --host=${X_HOST} \
-		--prefix=${X_BUILDDIR}/dest/${X_HOST}  \
+		--prefix=${X_BUILDDIR}/dest/${X_TARGET}  \
 		--enable-wildcard \
 		--with-default-msvcrt=${_default_msvcrt} \
 		--enable-shared --enable-static --with-tools=all \

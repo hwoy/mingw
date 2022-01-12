@@ -35,7 +35,7 @@ build()
 		mkdir build
 		cd build
 		../src/mingw-w64-tools/${cur}/configure \
-			--build=${X_BUILD} --host=${X_HOST} --target=${X_HOST} \
+			--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
 			--prefix=${X_BUILDDIR}/dest \
 			${MINGW_PARAM}
 					make $X_MAKE_JOBS
