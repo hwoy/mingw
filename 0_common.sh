@@ -16,9 +16,9 @@ export X_BUILDDIR=${X_BASEDIR}/Builds
 export X_MAKE_JOBS="-j$NUMBER_OF_PROCESSORS -O"
 export X_B2_JOBS="-j$NUMBER_OF_PROCESSORS"
 
-STAGE1=${X_SRCDIR}/${X_TARGET}-${X_THREAD}-${_default_msvcrt}-STAGE1
+STAGE1=${X_SRCDIR}/${X_TARGET}-${X_THREAD}-${_default_msvcrt}-${REV}-STAGE1
 
-STAGE23=${X_SRCDIR}/${X_TARGET}-${X_THREAD}-${_default_msvcrt}-STAGE23
+STAGE23=${X_SRCDIR}/${X_TARGET}-${X_THREAD}-${_default_msvcrt}-${REV}-STAGE23
 
 apply_patch_p2() {
 	for _patch in "$@"

@@ -54,15 +54,15 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	cd ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	mv dest ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	cd ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 	mv ${X_HOST}/bin ./
 
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 
 }
 

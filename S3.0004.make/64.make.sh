@@ -32,14 +32,14 @@ build()
 	cd ${X_BUILDDIR}
 	rm -rf src
 
-	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 
 }
 

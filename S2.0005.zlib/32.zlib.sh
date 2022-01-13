@@ -38,8 +38,8 @@ build()
 	ninja install
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 	#rm -rf bin/zstdgrep bin/zstdless lib/cmake lib/pkgconfig share
 	#for i in bin/unzstd bin/zstdcat bin/zstdmt; do mv $i $i.exe; done
 
@@ -47,7 +47,7 @@ build()
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 
 }
 

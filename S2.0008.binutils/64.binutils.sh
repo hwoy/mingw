@@ -70,8 +70,8 @@ build()
 
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 	rm -rf lib/*.la share
 	# https://github.com/msys2/MINGW-packages/issues/7890
 	rm -rf lib/bfd-plugins/libdep.a
@@ -80,7 +80,7 @@ build()
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 }
 
 decompress

@@ -52,14 +52,14 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-tools-${SVERSION}-${X_HOST}
-	cd ${SNAME}-tools-${SVERSION}-${X_HOST}
+	mv dest ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	cd ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-tools-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 
 }
 

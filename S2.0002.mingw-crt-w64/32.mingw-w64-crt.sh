@@ -55,14 +55,14 @@ build()
 	# Cleanup.
 	cd ${X_BUILDDIR}
 	rm -rf build src
-	mv dest ${SNAME}-crt-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
-	cd ${SNAME}-crt-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}
+	mv dest ${SNAME}-crt-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	cd ${SNAME}-crt-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}
 	mv * ../${PROJECTNAME}
 	mv ../${PROJECTNAME} ./
-	zip7 ${SNAME}-crt-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}.7z
+	zip7 ${SNAME}-crt-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 
 }
 
