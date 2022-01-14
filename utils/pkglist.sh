@@ -19,7 +19,7 @@ done
 
 source ../0_common_head.sh
 
-echo "'''" > ${FILE}
+echo "\`\`\`" > ${FILE}
 echo "Distro name: ${PROJ}" >> ${FILE}
 echo "Created by: ${AUTHOR}" >> ${FILE}
 echo "Reversion: ${REV}" >> ${FILE}
@@ -27,12 +27,12 @@ echo "Compilers: ${_languages}" >> ${FILE}
 echo "Thread: ${X_THREAD}" >> ${FILE}
 echo "Exception: SEH for 64 and Dwarf-2 for 32" >> ${FILE}
 echo "Libc: ${_default_msvcrt}" >> ${FILE}
-echo "'''" >> ${FILE}
+echo "\`\`\`" >> ${FILE}
 echo "" >> ${FILE}
 echo "" >> ${FILE}
 echo "**====================== Packages ======================**" >> ${FILE}
-echo "'''" >> ${FILE}
+echo "\`\`\`" >> ${FILE}
 awk '!seen[$0]++' ${FILE}.1 >> ${FILE}
-echo "'''" >> ${FILE}
+echo "\`\`\`" >> ${FILE}
 echo "**====================== Packages ======================**" >> ${FILE}
 rm -f ${FILE}.1
