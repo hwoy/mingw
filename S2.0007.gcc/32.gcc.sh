@@ -3,7 +3,7 @@
 source ../0_append_distro_path_32.sh
 
 SNAME=gcc
-SVERSION=11.2.0
+SVERSION=12.1.0
 
 
 # Extract vanilla sources.
@@ -13,7 +13,7 @@ decompress()
 	untar_file gmp-6.2.1.tar.xz
 	untar_file mpfr-4.1.0.tar.xz
 	untar_file mpc-1.2.1.tar.gz
-	untar_file isl-0.24.tar.xz
+	untar_file isl-0.25.tar.xz
 
 	untar_file ${SNAME}-${SVERSION}.tar.xz
 }
@@ -21,41 +21,70 @@ decompress()
 prepare()
 {
 	cd patch
+	
 	patch -Z -d ${X_BUILDDIR}/mpfr-4.1.0 -p1 < mpfr-4.1.0-p13.patch
+	
+	patch -p1 -d ${X_BUILDDIR}/isl-0.25 < isl-0.14.1-no-undefined.patch
+	autoreconf -fi ${X_BUILDDIR}/isl-0.25
+	
+	rm -rf ${X_BUILDDIR}/${SNAME}-${SVERSION}/intl/relocatex.c ${X_BUILDDIR}/${SNAME}-${SVERSION}/intl/relocatex.h
+	
+  # Debian decided to pull in changes from git, so just re-user that as is.
+  # https://salsa.debian.org/toolchain-team/gcc/-/blob/5ac26f96b568a7258b4a2900f8d99799d94bb8a9/debian/patches/git-updates.diff
+	apply_patch_p2 "git-updates.diff"
 
 	apply_patch_p1 \
-		0002-Relocate-libintl.patch \
-		0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch \
-		0004-Windows-Use-not-in-progpath-and-leave-case-as-is.patch \
-		0005-Windows-Don-t-ignore-native-system-header-dir.patch \
-		0006-Windows-New-feature-to-allow-overriding.patch \
-		0008-Prettify-linking-no-undefined.patch \
-		0010-Fix-using-large-PCH.patch \
-		0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch \
-		0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch
+    0002-Relocate-libintl.patch \
+    0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch \
+    0004-Windows-Use-not-in-progpath-and-leave-case-as-is.patch \
+    0005-Windows-Don-t-ignore-native-system-header-dir.patch \
+    0006-Windows-New-feature-to-allow-overriding.patch \
+    0007-Build-EXTRA_GNATTOOLS-for-Ada.patch \
+    0008-Prettify-linking-no-undefined.patch \
+    0010-Fix-using-large-PCH.patch \
+    0011-Enable-shared-gnat-implib.patch \
+    0012-Handle-spaces-in-path-for-default-manifest.patch \
+    0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch \
+    0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch \
+    0021-PR14940-Allow-a-PCH-to-be-mapped-to-a-different-addr.patch
+	
+  # Enable diagnostic color under mintty
+  # Вячеслав Петрищев <vyachemail@gmail.com>
+  apply_patch_p1 \
+    0140-gcc-8.2.0-diagnostic-color.patch
+	
 
-	# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=100486 :
-	apply_patch_p1 \
-		0021-fix-ada-exception-propagation.patch
+  # workaround for AVX misalignment issue for pass-by-value arguments
+  #   cf. https://github.com/msys2/MSYS2-packages/issues/1209
+  #   cf. https://sourceforge.net/p/mingw-w64/discussion/723797/thread/bc936130/ 
+  #  Issue is longstanding upstream at https://gcc.gnu.org/bugzilla/show_bug.cgi?id=54412
+  #  Potential alternative: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=939559
+  # https://github.com/msys2/MINGW-packages/pull/8317#issuecomment-824548411
+  apply_patch_p1 \
+    0200-add-m-no-align-vector-insn-option-for-i386.patch
 
-	# Enable diagnostic color under mintty
-	# Вячеслав Петрищев <vyachemail@gmail.com>
-	apply_patch_p1 \
-		0140-gcc-8.2.0-diagnostic-color.patch
+  # Patch from https://gcc.gnu.org/pipermail/gcc-patches/2022-January/588341.html
+  # Related bug: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=95130
+  apply_patch_p1 \
+    0300-override-builtin-printf-format.patch
 
-	apply_patch_p1 \
-		0150-gcc-10.2.0-libgcc-ldflags.patch
-
-	# workaround for AVX misalignment issue for pass-by-value arguments
-	#   cf. https://github.com/msys2/MSYS2-packages/issues/1209
-	#   cf. https://sourceforge.net/p/mingw-w64/discussion/723797/thread/bc936130/ 
-	#  Issue is longstanding upstream at https://gcc.gnu.org/bugzilla/show_bug.cgi?id=54412
-	#  Potential alternative: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=939559
-	# https://github.com/msys2/MINGW-packages/pull/8317#issuecomment-824548411
-	apply_patch_p1 \
-		0200-add-m-no-align-vector-insn-option-for-i386.patch
+  # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=105745
+  apply_patch_p1 \
+    1001-libgomp-use-_aligned_free-in-gomp_aligned_free-if-ne.patch \
+    1002-libgomp-don-t-use-GOMP_USE_ALIGNED_WORK_SHARES-on-Wi.patch
+	
 
 	cd ..
+	
+	cd ${X_BUILDDIR}/${SNAME}-${SVERSION}
+  # do not expect ${prefix}/mingw symlink - this should be superceded by
+  # 0005-Windows-Don-t-ignore-native-system-header-dir.patch .. but isn't!
+  sed -i 's/${prefix}\/mingw\//${prefix}\//g' configure
+
+  # change hardcoded /mingw prefix to the real prefix .. isn't this rubbish?
+  # it might work at build time and could be important there but beyond that?!
+  local MINGW_NATIVE_PREFIX=$(cygpath -am ${MINGW_PREFIX})
+  sed -i "s#\\/mingw\\/#${MINGW_NATIVE_PREFIX//\//\\/}\\/#g" gcc/config/i386/mingw32.h
 }
 
 build()
@@ -72,7 +101,7 @@ build()
 	mv gmp-6.2.1 src/gmp
 	mv mpfr-4.1.0 src/mpfr
 	mv mpc-1.2.1 src/mpc
-	mv isl-0.24 src/isl
+	mv isl-0.25 src/isl
 
 	# Prepare to build gcc - perform magic directory surgery.
 	#cp -r dest/${X_HOST}/lib dest/${X_HOST}/lib64
@@ -148,7 +177,7 @@ build()
 	# --disable-bootstrap             : Significantly accelerate the build, and work around bootstrap comparison failures.
 
 	# Build and install.
-	make $X_MAKE_JOBS V=1 all
+	make -j${JOBS}
 	make DESTDIR=${X_BUILDDIR}/dest install
 
 	# Cleanup.

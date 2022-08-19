@@ -3,7 +3,7 @@
 source ../0_append_distro_path_32.sh
 
 SNAME=mingw-w64
-SVERSION=v9.0.0
+SVERSION=v10.0.0
 
 # Extract vanilla sources.
 
@@ -31,6 +31,7 @@ build()
 
 	# Build mingw-w64 and winpthreads.
 	MINGW_PARAM="--enable-lib32 --disable-lib64"
+
 	mv ${SNAME}-${SVERSION} src
 	mkdir build dest
 	cd build
@@ -46,7 +47,7 @@ build()
 		${MINGW_PARAM}
 
 	# The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
-	make $X_MAKE_JOBS all
+	make -j${JOBS}
 	make  install
 
 	#make $X_MAKE_JOBS all "CFLAGS=-s -O2"

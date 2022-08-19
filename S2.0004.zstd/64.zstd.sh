@@ -3,7 +3,7 @@
 source ../0_append_distro_path.sh
 
 SNAME=zstd
-SVERSION=1.5.1
+SVERSION=1.5.2
 
 decompress()
 {
@@ -31,7 +31,7 @@ build()
 		"-DZSTD_BUILD_SHARED=ON" \
 		-G "Ninja" ${X_BUILDDIR}/src/build/cmake
 
-	ninja ${X_B2_JOBS}
+	ninja -j${JOBS}
 	ninja install
 	cd ${X_BUILDDIR}
 	rm -rf build src

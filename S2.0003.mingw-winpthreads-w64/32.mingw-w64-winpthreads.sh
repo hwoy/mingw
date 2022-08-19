@@ -3,7 +3,7 @@
 source ../0_append_distro_path_32.sh
 
 SNAME=mingw-w64
-SVERSION=v9.0.0
+SVERSION=v10.0.0
 
 # Extract vanilla sources.
 
@@ -19,7 +19,7 @@ prepare()
 	apply_patch_p1 Define-__-de-register_frame_info-in-fake-libgcc_s.patch
 	cd ..
 
-	cd ${X_BUILDDIR}/mingw-w64-v9.0.0/mingw-w64-libraries/winpthreads
+	cd ${X_BUILDDIR}/mingw-w64-${SVERSION}/mingw-w64-libraries/winpthreads
 	autoreconf -vfi
 }
 
@@ -30,6 +30,7 @@ build()
 
 	# Build mingw-w64 and winpthreads.
 	MINGW_PARAM="--enable-lib32 --disable-lib64"
+	
 	mv ${SNAME}-${SVERSION} src
 	mkdir build dest
 	cd build
@@ -45,7 +46,7 @@ build()
 	# https://github.com/msys2/MINGW-packages/issues/7043
 
 	# The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
-	make $X_MAKE_JOBS all
+	make -j${JOBS}
 	make  install
 
 	#make $X_MAKE_JOBS all "CFLAGS=-s -O2"
@@ -56,7 +57,11 @@ build()
 	rm -rf build src
 	mv dest ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 	cd ${SNAME}-winpthreads-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
-	mv ${X_HOST}/bin ./
+	
+	if [ -d ${X_TARGET}/bin ]
+	then
+		mv ${X_TARGET}/bin ./bin
+	fi
 
 	rm -rf ../${PROJECTNAME}
 	mkdir ../${PROJECTNAME}

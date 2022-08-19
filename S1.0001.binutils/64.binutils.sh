@@ -4,7 +4,7 @@
 source ../0_append_distro_path.sh
 
 SNAME=binutils
-SVERSION=2.37
+SVERSION=2.39
 
 decompress()
 {
@@ -16,24 +16,32 @@ prepare()
 	cd patch
 
 	apply_patch_p1 \
-		0002-check-for-unusual-file-harder.patch \
-		0010-bfd-Increase-_bfd_coff_max_nscns-to-65279.patch \
-		0110-binutils-mingw-gnu-print.patch \
-		0600-Change-uint-to-unsigned.patch
-			# Add an option to change default bases back below 4GB to ease transition
-			# https://github.com/msys2/MINGW-packages/issues/7027
-			# https://github.com/msys2/MINGW-packages/issues/7023
-			apply_patch_p1 2001-ld-option-to-move-default-bases-under-4GB.patch
-			# https://github.com/msys2/MINGW-packages/pull/9233#issuecomment-889439433
-			apply_reverse_patch_p1 "2003-Restore-old-behaviour-of-windres-so-that-options-con.patch"
-
+    0002-check-for-unusual-file-harder.patch \
+    0010-bfd-Increase-_bfd_coff_max_nscns-to-65279.patch \
+    0110-binutils-mingw-gnu-print.patch
+	
+	# Add an option to change default bases back below 4GB to ease transition
+	# https://github.com/msys2/MINGW-packages/issues/7027
+	# https://github.com/msys2/MINGW-packages/issues/7023
+	apply_patch_p1 2001-ld-option-to-move-default-bases-under-4GB.patch
+	
+	# https://github.com/msys2/MINGW-packages/pull/9233#issuecomment-889439433
+	apply_reverse_patch_p1 2003-Restore-old-behaviour-of-windres-so-that-options-con.patch
+	
+	# Backport from master:
+	# https://sourceware.org/bugzilla/show_bug.cgi?id=29389
+	apply_patch_p1 3001-Fix-a-conflict-between-the-linker-s-need-to-rename-s.patch
+  
+    # Backport from master:
+	# https://sourceware.org/pipermail/binutils/2022-July/121902.html
+	apply_patch_p1 \
+    37513c1efbe5e8e1863f8ddf078cd395aa663388.patch \
+    61f6b650f9bb7fd276b45427b9202f3263465376.patch
+	
 	# patches for reproducibility from Debian:
 	# https://salsa.debian.org/mingw-w64-team/binutils-mingw-w64/-/tree/master/debian/patches
 	apply_patch_p2 "reproducible-import-libraries.patch"
 	apply_patch_p2 "specify-timestamp.patch"
-
-	# https://sourceware.org/bugzilla/show_bug.cgi?id=28138
-	apply_patch_p1 2004-bfd-Close-the-file-descriptor-if-there-is-no-archive.patch
 
 	cd ..
 
@@ -65,7 +73,7 @@ build()
 		--enable-install-libiberty \
 		${BINUTILS_PARAM}
 
-	make $X_MAKE_JOBS all
+	make -j${JOBS}
 	make  install
 
 	cd ${X_BUILDDIR}

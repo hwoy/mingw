@@ -3,7 +3,7 @@
 source ../0_append_distro_path.sh
 
 SNAME=mingw-w64
-SVERSION=v9.0.0
+SVERSION=v10.0.0
 
 # Extract vanilla sources.
 
@@ -37,7 +37,7 @@ build()
 	# https://github.com/msys2/MINGW-packages/issues/7043
 
 	# The headers must be built first. See: https://github.com/StephanTLavavej/mingw-distro/issues/64
-	make $X_MAKE_JOBS all
+	make -j${JOBS}
 	make  install
 
 	#make $X_MAKE_JOBS all "CFLAGS=-s -O2"

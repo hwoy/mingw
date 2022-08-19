@@ -2,7 +2,7 @@
 source ../0_append_distro_path_32.sh
 
 SNAME=libiconv
-SVERSION=1.16
+SVERSION=1.17
 
 decompress()
 {
@@ -13,7 +13,6 @@ prepare()
 {
 	cd patch
 
-	apply_patch_p1 0001-compile-relocatable-in-gnulib.mingw.patch
 	apply_patch_p1 0002-fix-cr-for-awk-in-configure.all.patch
 	apply_patch_p1 fix-pointer-buf.patch
 
@@ -30,8 +29,8 @@ build()
 	../src/configure \
 		--build=${X_BUILD} \
 		--host=${X_HOST} \
-		--target==${X_TARGET} \
-		--prefix=${X_BUILDDIR}/dest \
+		--target=${X_TARGET} \
+		--prefix=${NEW_DISTRO_ROOT} \
 		--enable-static \
 		--enable-shared \
 		--enable-extra-encodings \
@@ -40,8 +39,8 @@ build()
 		--enable-silent-rules \
 		--enable-nls
 
-	make $X_MAKE_JOBS all
-	make install
+	make -j${JOBS}
+	DESTDIR=${X_BUILDDIR}/dest make install
 
 	cd ${X_BUILDDIR}
 	rm -rf build src
@@ -49,12 +48,13 @@ build()
 	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
 
 	#remove binary
-	rm -rf bin/*.exe
+	mv c ../dest
+	cd ../
+	rm -rf ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	mv dest ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	cd ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}
+	rm -rf ${PROJECTNAME}/bin/*.exe
 
-	rm -rf ../${PROJECTNAME}
-	mkdir ../${PROJECTNAME}
-	mv * ../${PROJECTNAME}
-	mv ../${PROJECTNAME} ./
 	zip7 ${SNAME}-${SVERSION}-${X_HOST}-${X_THREAD}-${_default_msvcrt}-${REV}.7z
 
 }

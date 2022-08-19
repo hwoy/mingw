@@ -10,8 +10,7 @@ export X_SRCDIR=${X_BASEDIR}/Sources
 export X_BUILDDIR=${X_BASEDIR}/Builds
 
 
-export X_MAKE_JOBS="-j$NUMBER_OF_PROCESSORS -O"
-export X_B2_JOBS="-j$NUMBER_OF_PROCESSORS"
+export JOBS=${NUMBER_OF_PROCESSORS}
 
 STAGE1=${X_SRCDIR}/${X_TARGET}-${X_THREAD}-${_default_msvcrt}-${REV}-STAGE1
 

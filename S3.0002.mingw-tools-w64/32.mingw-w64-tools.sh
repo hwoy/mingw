@@ -3,7 +3,7 @@
 source ../0_append_distro_path_32.sh
 
 SNAME=mingw-w64
-SVERSION=v9.0.0
+SVERSION=v10.0.0
 
 # Extract vanilla sources.
 
@@ -37,8 +37,9 @@ build()
 		../src/mingw-w64-tools/${cur}/configure \
 			--build=${X_BUILD} --host=${X_HOST} --target=${X_TARGET} \
 			--prefix=${X_BUILDDIR}/dest \
+			--with-mangle=${NEW_DISTRO_ROOT} \
 			${MINGW_PARAM}
-					make $X_MAKE_JOBS
+					make -j${JOBS}
 					make install
 					cd ..
 				done
