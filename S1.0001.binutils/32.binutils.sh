@@ -66,7 +66,8 @@ build()
 		--disable-shared \
 		--enable-lto \
 		--disable-werror \
-		--enable-nls \
+		--disable-nls \
+		--without-libintl \
 		--disable-rpath \
 		--enable-plugins \
 		--enable-deterministic-archives \

@@ -66,13 +66,15 @@ build()
 		--disable-shared \
 		--enable-lto \
 		--disable-werror \
-		--enable-nls \
+		--disable-nls \
+		--without-libintl \
 		--disable-rpath \
 		--enable-plugins \
 		--enable-deterministic-archives \
 		--enable-install-libiberty \
 		${BINUTILS_PARAM}
-
+		#--disable-nls \
+		#--without-libintl 
 	make -j${JOBS}
 	make  install
 
